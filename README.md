@@ -13,6 +13,19 @@ Users created: (Username,Password,Role)
 
 (user2,password,ACCOUNT)
 
+TELLER API
+
+GET /teller/account - Retrieves all account created.
+
+GET /teller/account/{id} - Retrieves details of a single account.
+
+POST /teller/account/ - Creates a new account.
+```
+ {
+       "userName":"user3",
+       "accountName":"USER 3",
+       "role":"ACCOUNT"
+}
+```
 
 
-/teller
