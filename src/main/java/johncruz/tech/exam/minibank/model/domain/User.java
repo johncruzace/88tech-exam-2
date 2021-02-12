@@ -30,7 +30,6 @@ public class User extends PersistableObject {
     @Column(columnDefinition = "boolean default true")
     private Boolean active;
 
-    @JsonIgnore
     private String role;
 
     public boolean isActive() {
@@ -74,7 +73,7 @@ public class User extends PersistableObject {
     }
 
     public User() {
-        this.setCreatedDate(LocalDateTime.now());
+        this.setCreatedDate();
     }
 
     public User(String userName, String accountName, String password, BigDecimal balance, boolean active, String role) {
@@ -83,7 +82,7 @@ public class User extends PersistableObject {
         this.password = password;
         this.active = active;
         this.role = role;
-        this.setCreatedDate(LocalDateTime.now());
+        this.setCreatedDate();
     }
 
     public AccountDetails getAccountDetails() {
@@ -114,6 +113,6 @@ public class User extends PersistableObject {
     public User(String userName, String password, BigDecimal balance) {
         this.userName = userName;
         this.password = password;
-        this.setCreatedDate(LocalDateTime.now());
+        this.setCreatedDate();
     }
 }

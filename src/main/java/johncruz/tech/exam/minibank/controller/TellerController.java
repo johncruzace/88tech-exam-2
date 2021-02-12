@@ -1,6 +1,5 @@
 package johncruz.tech.exam.minibank.controller;
 
-import johncruz.tech.exam.minibank.model.domain.AccountDetails;
 import johncruz.tech.exam.minibank.model.domain.User;
 import johncruz.tech.exam.minibank.model.request.AccountDetailsRequest;
 import johncruz.tech.exam.minibank.model.response.ResponseObject;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -17,6 +17,11 @@ public class TellerController {
 
     @Autowired
     private UserServiceImpl userService;
+
+    @GetMapping(value = {"/account-history/","/account-history"})
+    public ResponseEntity<List<HashMap<String,Object>>> retrieveAllAccountHistory(){
+        return ResponseEntity.ok().body(userService.retrieveAllUserHistory());
+    }
 
     @GetMapping(value = {"/account/","/account"})
     public ResponseEntity<List<User>> retrieveAllUsers(){

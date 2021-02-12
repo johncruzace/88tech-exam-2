@@ -39,7 +39,7 @@ public class AccountDetails extends PersistableObject {
     }
 
     public AccountDetails() {
-        this.setCreatedDate(LocalDateTime.now());
+        this.setCreatedDate();
     }
 
     public User getUser() {

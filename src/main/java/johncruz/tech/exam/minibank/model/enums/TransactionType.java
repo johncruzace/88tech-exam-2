@@ -1,7 +1,8 @@
 package johncruz.tech.exam.minibank.model.enums;
 
-enum TransactionType {
+public enum TransactionType {
     DEPOSIT,
     WITHDRAW,
-    TRANSFER
+    TRANSFER_FROM,
+    TRANSFER_TO
 }

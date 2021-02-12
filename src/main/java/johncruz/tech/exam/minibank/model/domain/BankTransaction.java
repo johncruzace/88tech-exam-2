@@ -1,6 +1,7 @@
 package johncruz.tech.exam.minibank.model.domain;
 
 import johncruz.tech.exam.minibank.model.PersistableObject;
+import johncruz.tech.exam.minibank.model.enums.TransactionType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,13 +24,34 @@ public class BankTransaction extends PersistableObject {
     private BigDecimal runningBalance;
 
     @Column
-    private String transactionType;
+    private TransactionType transactionType;
 
-    public String getTransactionType() {
+    @Column
+    private String transferredFrom;
+    @Column
+    private String transferredTo;
+
+    public TransactionType getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(String transactionType) {
+    public String getTransferredFrom() {
+        return transferredFrom;
+    }
+
+    public void setTransferredFrom(String transferredFrom) {
+        this.transferredFrom = transferredFrom;
+    }
+
+    public String getTransferredTo() {
+        return transferredTo;
+    }
+
+    public void setTransferredTo(String transferredTo) {
+        this.transferredTo = transferredTo;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
         this.transactionType = transactionType;
     }
 

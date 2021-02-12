@@ -29,31 +29,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and()
                 .csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/api/**").hasAnyAuthority("ADMIN","USER")
-//                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/teller/**").hasAnyAuthority("TELLER")
-                .antMatchers("/account/**").hasAnyAuthority("ACCOUNT","TELLER")
-//                .antMatchers("/api/rest-call/**").hasAnyAuthority("ADMIN")
-//                .antMatchers("/").permitAll()
+                .antMatchers("/transaction/**").hasAnyAuthority("ACCOUNT","TELLER")
                 .and().cors()
                 .and().formLogin();
 
-//        http.authorizeRequests()
-//                .antMatchers("/**").hasAuthority("ADMIN")
-//                .and().formLogin()
-//                .and().logout()
-//                    .logoutSuccessHandler(new LogoutSuccessHandler() {
-//                        @Override
-//                        public void onLogoutSuccess(HttpServletRequest httpServletRequest,
-//                                                    HttpServletResponse httpServletResponse,
-//                                                    Authentication authentication) throws IOException, ServletException {
-//                            UrlPathHelper helper = new UrlPathHelper();
-//                            System.out.println("LOGGING OUT -> " + authentication.getName());
-//                            String contextPath = helper.getContextPath(httpServletRequest);
-//                            httpServletResponse.sendRedirect(contextPath+"/login");
-//
-//                        }
-//                    }).permitAll();
     }
 
     @Bean

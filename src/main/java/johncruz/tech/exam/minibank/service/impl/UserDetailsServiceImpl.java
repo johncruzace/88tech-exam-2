@@ -6,6 +6,9 @@ import johncruz.tech.exam.minibank.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,8 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.orElseThrow(()-> new UsernameNotFoundException("Not Found : " + s));
 
         UserSecurityDetails localUserDetails = user.map(UserSecurityDetails::new).get();
-        logger.info("encoded password -> {}",passwordEncoder.encode(localUserDetails.getPassword()));
-        logger.info("authorities -> {}",localUserDetails.getAuthorities());
         return localUserDetails;
     }
+
 }

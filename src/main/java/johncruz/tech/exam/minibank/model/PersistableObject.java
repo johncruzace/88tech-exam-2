@@ -10,6 +10,8 @@ public abstract class PersistableObject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String createdBy;
+
     @Column
     private LocalDateTime createdDate;
 
@@ -25,7 +27,15 @@ public abstract class PersistableObject {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setCreatedDate() {
+        this.createdDate = LocalDateTime.now();
     }
 }
