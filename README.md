@@ -5,13 +5,13 @@ Please implement a program using Java's polymorphic features.
 
 Mini Bank API
 
-Users created:
+Users created: (Username,Password,Role)
 
-username (teller) password (password) roles (TELLER)
+(teller,password,TELLER)
 
-username (user1) password (password) roles (ACCOUNT)
+(user1,password,ACCOUNT)
 
-username (user2) password (password) roles (ACCOUNT)
+(user2,password,ACCOUNT)
 
 
 
