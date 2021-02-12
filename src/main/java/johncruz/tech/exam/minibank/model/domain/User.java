@@ -1,37 +1,37 @@
 package johncruz.tech.exam.minibank.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
+import johncruz.tech.exam.minibank.model.PersistableObject;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="bank_user")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class User extends PersistableObject {
 
     @NotNull
     private String userName;
 
+    private String accountName;
+
+    @JsonIgnore
     private String password;
 
-    private BigDecimal balance;
+    @OneToOne(fetch = FetchType.EAGER,
+            mappedBy = "user")
+    @JsonManagedReference(value = "user-accountdetails")
+    private AccountDetails accountDetails;
 
-    private boolean active;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean active;
 
+    @JsonIgnore
     private String role;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public boolean isActive() {
         return active;
@@ -65,20 +65,55 @@ public class User {
         this.password = password;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public User() {
+        this.setCreatedDate(LocalDateTime.now());
+    }
+
+    public User(String userName, String accountName, String password, BigDecimal balance, boolean active, String role) {
+        this.userName = userName;
+        this.accountName = accountName;
+        this.password = password;
+        this.active = active;
+        this.role = role;
+        this.setCreatedDate(LocalDateTime.now());
+    }
+
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
+    }
+
+    public User(String userName, String accountName, String password, AccountDetails accountDetails, Boolean active, String role) {
+        this.userName = userName;
+        this.accountName = accountName;
+        this.password = password;
+        this.accountDetails = accountDetails;
+        this.active = active;
+        this.role = role;
+    }
+
+    public void setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public User(String userName, String password, BigDecimal balance) {
         this.userName = userName;
         this.password = password;
-        this.balance = balance;
+        this.setCreatedDate(LocalDateTime.now());
     }
 }

@@ -1,15 +1,14 @@
-package johncruz.tech.exam.minibank.model.parentclass;
+package johncruz.tech.exam.minibank.model.domain;
+
+import johncruz.tech.exam.minibank.model.PersistableObject;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
-public abstract class RequestEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Entity
+@Table(name="transaction_master")
+public class BankTransaction extends PersistableObject {
 
     @Column
     private String user;
@@ -23,12 +22,15 @@ public abstract class RequestEntity {
     @Column
     private BigDecimal runningBalance;
 
-    public Long getId() {
-        return id;
+    @Column
+    private String transactionType;
+
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public String getUser() {

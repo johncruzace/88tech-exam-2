@@ -1,7 +1,5 @@
 package johncruz.tech.exam.minibank;
 
-import johncruz.tech.exam.minibank.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
