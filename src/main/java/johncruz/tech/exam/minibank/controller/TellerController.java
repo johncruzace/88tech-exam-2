@@ -23,27 +23,27 @@ public class TellerController {
         return ResponseEntity.ok().body(userService.retrieveAllUserHistory());
     }
 
-    @GetMapping(value = {"/account/","/account"})
+    @GetMapping(value = {"/user/","/user"})
     public ResponseEntity<List<User>> retrieveAllUsers(){
         return ResponseEntity.ok().body(userService.retrieveAllUsers());
     }
 
-    @GetMapping(value = {"/account/{id}","/account/{id}/"})
+    @GetMapping(value = {"/user/{id}","/user/{id}/"})
     public ResponseEntity<User> retrieveUserDetails(@PathVariable(name = "id") String id){
         return ResponseEntity.ok().body(userService.retrieveSingleUser(id));
     }
 
-    @PostMapping(value = {"/account","/account/"})
+    @PostMapping(value = {"/user","/user/"})
     public ResponseEntity<ResponseObject> createNewUser(@RequestBody User user){
         return ResponseEntity.ok().body(userService.createNewUser(user));
     }
 
-    @DeleteMapping(value = {"/account/{id}","/account/{id}/"})
+    @DeleteMapping(value = {"/user/{id}","/user/{id}/"})
     public ResponseEntity<ResponseObject> deleteUser(@PathVariable(name = "id") String id){
         return ResponseEntity.ok().body(userService.deleteUser(id));
     }
 
-    @PostMapping(value = {"/account/{id}/bank-account","/account/{id}/bank-account/"})
+    @PostMapping(value = {"/user/{id}/bank-account","/user/{id}/bank-account/"})
     public ResponseEntity<ResponseObject> openNewAccount(
             @PathVariable(name = "id") String id,
             @RequestBody AccountDetailsRequest accountDetails){
@@ -51,7 +51,7 @@ public class TellerController {
     }
 
 
-    @DeleteMapping(value = {"/account/{id}/bank-account","/account/{id}/bank-account/"})
+    @DeleteMapping(value = {"/user/{id}/bank-account","/user/{id}/bank-account/"})
     public ResponseEntity<ResponseObject> deleteBankAccount(@PathVariable(name = "id") String id){
         return ResponseEntity.ok().body(userService.deleteBankAccount(id));
     }
